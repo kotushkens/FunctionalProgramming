@@ -1,2 +1,2 @@
 # All tasks have been pushed to branches
-1. `base haskell tricks` [(report)](https://gitlab.se.ifmo.ru/284357/functional-programming/-/tree/lab-0)
+1. `base haskell tricks` [(report)](https://github.com/kotushkens/FunctionalProgramming/tree/base-haskell-tricks)
