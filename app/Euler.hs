@@ -1,7 +1,6 @@
 module Euler (
     smallestDividendByAll,
     lcmForList,
-    longestRecurringWithMap,
     argMax,
     cycleLength
 ) where
@@ -21,12 +20,6 @@ lcmForList [] = 1
 lcmForList [x] = x
 lcmForList (x:xs) = lcm x (lcmForList xs)
 
-longestRecurringWithMap :: Double -> [Double]
-longestRecurringWithMap bound = [1.0 / x | x <- [2,3..bound]]
-
--- Length of the repeating decimal cycle of 1/n.
--- e.g. 1/4 = 0.25(0), which is length 1.
--- e.g. 1/7 = 0.(142857), which is length 6.
 cycleLength :: Int -> Int
 cycleLength n =
 	let

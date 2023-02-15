@@ -59,6 +59,26 @@ lcmForList [x] = x
 lcmForList (x:xs) = lcm x (lcmForList xs)
 ```
 
+Решение на языке Python: 
+```python
+ls = [x for x in range(1, 21)]
+
+
+def gcd(a, b):
+while b:
+a, b = b, a % b
+return a
+
+
+def lcm(ls):
+tmp = 1
+for i in ls:
+tmp = tmp * i // gcd(tmp, i)
+return tmp
+
+
+print(lcm(ls))
+```
 #### Задача №26:
 
 > A unit fraction contains 1 in the numerator. The decimal representation of the unit fractions with denominators 2 to 10 are given:
@@ -90,13 +110,32 @@ Find the value of d < 1000 for which 1/d contains the longest recurring cycle in
    findCycle [] remainders
    ```
 
-3. Свёртка (вспомогательная функция для нахождения максимума)
+2. Свёртка (вспомогательная функция для нахождения максимума)
 ```haskell
 argMax :: Ord b => (a -> b) -> [a] -> a
 argMax f = foldl1' (\x y -> if (f y) > (f x) then y else x)
 ```
 
+Решение на языке Python:
+```python
+number = 1
+p_max = 1
 
+for n in range(3, 1000, 2):
+    if n % 5 == 0:
+        continue
+
+    p = 10
+    s = 1
+    while p % n != 1:
+        s += 1
+        p *= 10
+
+    if s > p_max:
+        number, p_max = n, s
+
+print(number, p_max)
+```
 
 
 
