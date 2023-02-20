@@ -54,3 +54,4 @@ tests:
       - ...
     dependencies:
       - HUnit
+      - Lab1
