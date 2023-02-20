@@ -5,3 +5,5 @@ test-job:
   script:
     - stack build
     - stack test/Main.hs --test-arguments --color
+  tags:
+    - shell
