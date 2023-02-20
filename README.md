@@ -52,11 +52,15 @@ smallestDividendByAll bound = helper 1 1 bound
 При помощи рекурсивного вызова функции LCM из пакета Prelude
 ищем наименьшее удовлетворяющее условиям число.
 
-``` haskell
-lcmForList :: [Integer] -> Integer
+```haskell
+lcmForList :: [Int] -> Int
 lcmForList [] = 1
 lcmForList [x] = x
-lcmForList (x:xs) = lcm x (lcmForList xs)
+lcmForList (x:xs) = customLcm x (lcmForList xs)
+  where 
+    customLcm _ 0 = 0
+    customLcm 0 _ = 0
+    customLcm x y =  abs ((x `quot` gcd x y) * y)
 ```
 
 Решение на языке Python: 
