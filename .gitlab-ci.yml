@@ -1,5 +1,5 @@
 test-job:
-  image: haskell:8.6.5
+  image: haskell:latest
   stage: test
   rules:
     - if: $CI_PIPELINE_SOURCE == "push"
