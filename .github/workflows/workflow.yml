@@ -19,8 +19,15 @@ jobs:
           ghc-version: "8.10.4"
           enable-stack: true
           stack-version: "latest"
-      - name: Haskell lint
-        uses: domdere/haskell-lint-action@v1.0.2
+      - name: 'Set up HLint'
+        uses: rwe/actions-hlint-setup@v1
+        with:
+          version: '3.1.6'
+      - name: 'Run HLint'
+        uses: rwe/actions-hlint-run@v2
+        with:
+          path: '["src/", "test/", "app/"]'
+          fail-on: error
       - name: Install HUnit
         run: stack install HUnit
       - name: Build
