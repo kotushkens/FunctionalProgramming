@@ -17,6 +17,14 @@ jobs:
           ghc-version: "8.10.4"
           enable-stack: true
           stack-version: "latest"
+      - uses: actions/cache@v2
+          name: Cache ~/.stack
+          with:
+            path: |
+              ~/.stack
+            key: ${{ runner.os }}-store-${{ hashFiles('stack.yaml.lock') }}-${{ hashFiles('package.yaml') }}
+      - name: Install HUnit
+        run: stack install HUnit
       - name: Build
         run: stack build
       - name: Test
