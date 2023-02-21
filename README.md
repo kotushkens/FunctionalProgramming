@@ -19,6 +19,7 @@
 Требуется использовать идиоматичный для технологии стиль программирования.
 
 ### Решения:
+####Ссылка на ветку с CI в [Github](https://github.com/kotushkens/FunctionalProgramming/tree/lab-1)
 #### Задача №5:
 
 >2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
@@ -69,16 +70,16 @@ ls = [x for x in range(1, 21)]
 
 
 def gcd(a, b):
-while b:
-a, b = b, a % b
-return a
+    while b:
+        a, b = b, a % b
+    return a
 
 
 def lcm(ls):
-tmp = 1
-for i in ls:
-tmp = tmp * i // gcd(tmp, i)
-return tmp
+    tmp = 1
+    for i in ls:
+        tmp = tmp * i // gcd(tmp, i)
+    return tmp
 
 
 print(lcm(ls))
@@ -138,7 +139,7 @@ for n in range(3, 1000, 2):
     if s > p_max:
         number, p_max = n, s
 
-print(number, p_max)
+print(number)
 ```
 
 ### Вывод:
