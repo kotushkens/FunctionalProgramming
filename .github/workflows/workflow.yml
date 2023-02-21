@@ -20,4 +20,4 @@ jobs:
       - name: Build
         run: stack build
       - name: Test
-        run: stack test/Main.hs --test-arguments --color
+        run: stack test/Spec.hs --test-arguments --color
