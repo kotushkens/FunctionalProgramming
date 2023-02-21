@@ -48,7 +48,7 @@ executables:
     - Lab1
 tests:
   so-mve-test:
-    main:                Main.hs
+    main:                Spec.hs
     source-dirs:         test
     ghc-options:
       - ...

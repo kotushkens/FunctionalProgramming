@@ -49,7 +49,7 @@ executable Lab1-exe
 
 test-suite so-mve-test
   type: exitcode-stdio-1.0
-  main-is: Main.hs
+  main-is: Spec.hs
   other-modules:
       Paths_Lab1
   hs-source-dirs:
