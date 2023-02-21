@@ -1,3 +1,5 @@
+env:
+  NAME: 'CI'
 name: CI
 on:
   push:
