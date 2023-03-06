@@ -2,8 +2,8 @@ module Main (main) where
 
 import Euler
 
+list1 :: [Int]
 list1 = take 20 [1,2..]
-list2 = take 1000 [1..]
 
 main :: IO ()
 main = do
@@ -11,4 +11,4 @@ main = do
    print (smallestDividendByAll 20)
    print (lcmForList list1)
    --Find the value of d < 1000 for which 1/d contains the longest recurring cycle in its decimal fraction part.
-   print (argMax cycleLength list2)
+   print (snd $ argMax $ take 1000 $ mapList [1..])
