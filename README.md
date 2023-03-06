@@ -103,22 +103,29 @@ Find the value of d < 1000 for which 1/d contains the longest recurring cycle in
 1. Итератор и хвостовая рекурсия
 
 ```haskell 
-   cycleLength :: Int -> Int
-   cycleLength n =
-   let
-   remainders = iterate (\x -> mod (x * 10) n) 1
-   findCycle [] (x:xs) = findCycle (x:[]) xs
-   findCycle acc (x:xs) = case elemIndex x acc of
-   Nothing -> findCycle (x:acc) xs
-   Just i -> i + 1
-   in
-   findCycle [] remainders
+cycleLength :: Int -> (Int, Int)
+cycleLength n =
+  let
+    remainders = iterate (\x -> mod (x * 10) n) 1
+    findCycle (_:_) [] = undefined
+    findCycle [] [] = undefined
+    findCycle [] (x:xs) = findCycle (x:[]) xs
+    findCycle acc (x:xs) = case elemIndex x acc of
+      Nothing -> findCycle (x:acc) xs
+      Just i -> (i + 1, n)
+  in
+    findCycle [] remainders
    ```
 
 2. Свёртка (вспомогательная функция для нахождения максимума)
 ```haskell
-argMax :: Ord b => (a -> b) -> [a] -> a
-argMax f = foldl1' (\x y -> if (f y) > (f x) then y else x)
+argMax :: Ord a => [(a, a)] -> (a, a)
+argMax = foldl1' (\x y -> if fst y > fst x then y else x)
+```
+3. Отображение для работы с бесконечными списками
+```haskell
+mapList :: [Int] -> [(Int, Int)]
+mapList ls = map cycleLength ls
 ```
 
 Решение на языке Python:

@@ -38,10 +38,8 @@ cycleLength n =
   in
     findCycle [] remainders
 
-
 mapList :: [Int] -> [(Int, Int)]
 mapList ls = map cycleLength ls
-
 
 argMax :: Ord a => [(a, a)] -> (a, a)
 argMax = foldl1' (\x y -> if fst y > fst x then y else x)
