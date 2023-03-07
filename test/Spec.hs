@@ -1,5 +1,5 @@
-import Test.HUnit
 import Euler
+import Test.HUnit
 
 smallestDividendByAllTest :: Test
 smallestDividendByAllTest = TestCase (assertEqual "smallestDividendByAllTest" 232792560 (smallestDividendByAll 20))
