@@ -19,6 +19,10 @@ jobs:
           ghc-version: "8.10.4"
           enable-stack: true
           stack-version: "latest"
+      - name: Check formatting
+        run: |
+          ./format.sh
+          nix-shell -p "(import ./nix/nixpkgs/default.nix).git" --command "git diff --exit-code --color=always"
       - name: 'Set up HLint'
         uses: rwe/actions-hlint-setup@v1
         with:
