@@ -28,7 +28,6 @@ What is the smallest positive number that is evenly divisible by all of the numb
 0. Работа с бесконечными списками
 ```haskell
    list1 = take 20 [1,2..]
-   list2 = take 1000 [1..]
 ```
 
 1. Хвостовая рекурсия
@@ -42,10 +41,10 @@ What is the smallest positive number that is evenly divisible by all of the numb
 smallestDividendByAll :: Int -> Int
 smallestDividendByAll bound = helper 1 1 bound
   where
-    helper n result bound
-      | n > bound = result
-      | result `mod` n == 0 = helper (n+1) result bound
-      | otherwise = helper 1 (result+1) bound
+    helper n result b
+      | n > b = result
+      | result `mod` n == 0 = helper (n + 1) result b
+      | otherwise = helper 1 (result + 1) b
 ```
 
 2. Рекурсия (с использованием built-in LCM)
@@ -57,11 +56,11 @@ smallestDividendByAll bound = helper 1 1 bound
 lcmForList :: [Int] -> Int
 lcmForList [] = 1
 lcmForList [x] = x
-lcmForList (x:xs) = customLcm x (lcmForList xs)
-  where 
+lcmForList (x : xs) = customLcm x (lcmForList xs)
+  where
     customLcm _ 0 = 0
     customLcm 0 _ = 0
-    customLcm x y =  abs ((x `quot` gcd x y) * y)
+    customLcm a b = abs ((a `quot` gcd a b) * b)
 ```
 
 Решение на языке Python: 
@@ -105,21 +104,19 @@ Find the value of d < 1000 for which 1/d contains the longest recurring cycle in
 ```haskell 
 cycleLength :: Int -> (Int, Int)
 cycleLength n =
-  let
-    remainders = iterate (\x -> mod (x * 10) n) 1
-    findCycle (_:_) [] = undefined
-    findCycle [] [] = undefined
-    findCycle [] (x:xs) = findCycle (x:[]) xs
-    findCycle acc (x:xs) = case elemIndex x acc of
-      Nothing -> findCycle (x:acc) xs
-      Just i -> (i + 1, n)
-  in
-    findCycle [] remainders
+  let remainders = iterate (\x -> mod (x * 10) n) 1
+      findCycle (_ : _) [] = undefined
+      findCycle [] [] = undefined
+      findCycle [] (x : xs) = findCycle (x : []) xs
+      findCycle acc (x : xs) = case elemIndex x acc of
+        Nothing -> findCycle (x : acc) xs
+        Just i -> (i + 1, n)
+   in findCycle [] remainders
    ```
 
 2. Свёртка (вспомогательная функция для нахождения максимума)
 ```haskell
-argMax :: Ord a => [(a, a)] -> (a, a)
+argMax :: (Ord a) => [(a, a)] -> (a, a)
 argMax = foldl1' (\x y -> if fst y > fst x then y else x)
 ```
 3. Отображение для работы с бесконечными списками
