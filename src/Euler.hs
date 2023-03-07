@@ -1,28 +1,29 @@
-module Euler
-    ( smallestDividendByAll,
+module Euler (
+      smallestDividendByAll,
       lcmForList,
       argMax,
       cycleLength,
-      mapList,
-    ) 
+      mapList
+    )
   where
 
 import Data.List (elemIndex, foldl1')
 
 smallestDividendByAll :: Int -> Int
+smallestDividendByAll bound = helper 1 1 bound
   where
     helper n result b
-     | n > b = result
-     | result `mod` n == 0 = helper (n  1) result b
-     | otherwise = helper 1 (result  1) b
+      | n > b = result
+      | result `mod` n == 0 = helper (n + 1) result b
+      | otherwise = helper 1 (result + 1) b
 
 lcmForList :: [Int] -> Int
 lcmForList [] = 1
 lcmForList [x] = x
 lcmForList (x : xs) = customLcm x (lcmForList xs)
   where
-    customLcm _ 0 = 0
-    customLcm 0 _ = 0
+   customLcm _ 0 = 0
+   customLcm 0 _ = 0
    customLcm a b = abs ((a `quot` gcd a b) * b)
 
 cycleLength :: Int -> (Int, Int)
@@ -33,7 +34,7 @@ cycleLength n =
      findCycle [] (x : xs) = findCycle (x : []) xs
      findCycle acc (x : xs) = case elemIndex x acc of
        Nothing -> findCycle (x : acc) xs
-       Just i -> (i  1, n)
+       Just i -> (i + 1, n)
   in findCycle [] remainders
 
 mapList :: [Int] -> [(Int, Int)]
