@@ -19,9 +19,8 @@ jobs:
           ghc-version: "8.10.4"
           enable-stack: true
           stack-version: "latest"
-      - name: Check formatting
-        run: |
-          curl -sL https://raw.github.com/haskell/stylish-haskell/master/scripts/latest.sh | sh -s .
+      - name: 'Verify project is formatted with Ormolu'
+        uses: mrkkrp/ormolu-action@v10
       - name: 'Set up HLint'
         uses: rwe/actions-hlint-setup@v1
         with:
