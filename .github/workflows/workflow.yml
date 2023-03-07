@@ -1,0 +1,38 @@
+env:
+  NAME: 'CI'
+name: CI
+on:
+  push:
+    branches:
+      - lab-1
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  build:
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: haskell/actions/setup@v1
+        with:
+          ghc-version: "8.10.4"
+          enable-stack: true
+          stack-version: "latest"
+      - name: 'Verify project is formatted with Ormolu'
+        uses: mrkkrp/ormolu-action@v10
+      - name: 'Set up HLint'
+        uses: rwe/actions-hlint-setup@v1
+        with:
+          version: '3.1.6'
+      - name: 'Run HLint'
+        uses: rwe/actions-hlint-run@v2
+        with:
+          path: '["src/", "test/", "app/"]'
+          fail-on: error
+      - name: Install HUnit
+        run: stack install HUnit
+      - name: Build
+        run: stack build
+      - name: Test
+        run: stack test/Spec.hs --test-arguments --color

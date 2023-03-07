@@ -1,0 +1,8 @@
+image: docker:stable
+test-job:
+  stage: test
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "push"
+  script:
+    - stack build
+    - stack test/Main.hs --test-arguments --color
