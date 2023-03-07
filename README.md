@@ -19,7 +19,7 @@
 Требуется использовать идиоматичный для технологии стиль программирования.
 
 ### Решения:
-####Ссылка на ветку с CI в [Github](https://github.com/kotushkens/FunctionalProgramming/tree/lab-1)
+#### Ссылка на ветку с CI в [Github](https://github.com/kotushkens/FunctionalProgramming/tree/lab-1)
 #### Задача №5:
 
 >2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
