@@ -3,7 +3,7 @@ import Euler
 list1 :: [Int]
 list1 = take 20 [1, 2 ..]
 
-main :: IO()
+main :: IO ()
 main = do
   -- What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
   print (smallestDividendByAll 20)
